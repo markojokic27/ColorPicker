@@ -1,7 +1,13 @@
-import Image from "next/image";
+// Components
+
+import { Layout, LayoutRow, LayoutColumn } from "@/components/Layout";
 
 export default function Home() {
   return (
-    <div>ColorPicker</div>
+    <Layout>
+      <LayoutRow>
+        <LayoutColumn>ColorPicker</LayoutColumn>
+      </LayoutRow>
+    </Layout>
   );
 }
