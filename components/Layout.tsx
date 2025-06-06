@@ -67,33 +67,25 @@ export const LayoutColumn: React.FC<LayoutColumnProps> = ({
   const baseClasses = `${spanClasses(span)} ${offsetClasses(offset)}`;
   const smClasses =
     smSpan || smOffset
-      ? `${smSpan ? spanClasses(smSpan, "sm") : ""} ${
-          smOffset ? offsetClasses(smOffset, "sm") : ""
-        }`
+      ? `${smSpan ? spanClasses(smSpan, "sm") : ""} ${smOffset ? offsetClasses(smOffset, "sm") : ""}`
       : "";
   const mdClasses =
     mdSpan || mdOffset
-      ? `${mdSpan ? spanClasses(mdSpan, "md") : ""} ${
-          mdOffset ? offsetClasses(mdOffset, "md") : ""
-        }`
+      ? `${mdSpan ? spanClasses(mdSpan, "md") : ""} ${mdOffset ? offsetClasses(mdOffset, "md") : ""}`
       : "";
   const lgClasses =
     lgSpan || lgOffset
-      ? `${lgSpan ? spanClasses(lgSpan, "lg") : ""} ${
-          lgOffset ? offsetClasses(lgOffset, "lg") : ""
-        }`
+      ? `${lgSpan ? spanClasses(lgSpan, "lg") : ""} ${lgOffset ? offsetClasses(lgOffset, "lg") : ""}`
       : "";
   const xlClasses =
     xlSpan || xlOffset
-      ? `${xlSpan ? spanClasses(xlSpan, "xl") : ""} ${
-          xlOffset ? offsetClasses(xlOffset, "xl") : ""
-        }`
+      ? `${xlSpan ? spanClasses(xlSpan, "xl") : ""} ${xlOffset ? offsetClasses(xlOffset, "xl") : ""}`
       : "";
   return (
     <div
       {...rest}
       className={twMerge(
-        `px-1 md:px-4 lg:px-6 ${baseClasses} ${smClasses} ${mdClasses} ${lgClasses} ${xlClasses}`,
+        `relative px-1 md:px-4 lg:px-6 ${baseClasses} ${smClasses} ${mdClasses} ${lgClasses} ${xlClasses}`,
         className,
       )}
     >

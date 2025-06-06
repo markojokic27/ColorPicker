@@ -9,6 +9,9 @@ const config = {
   theme: {
     extend: {
       screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
         xl: "1296px",
       },
       fontSize: {
@@ -28,6 +31,7 @@ const config = {
       },
     },
   },
+  
   plugins: [require("tailwind-scrollbar-hide")],
 } satisfies Config;
 
