@@ -63,7 +63,7 @@ export const Input: React.FC<
         <AriaInput
           {...restInputProps}
           className={twMerge(
-            "border-grayscale-200 hover:border-grayscale-500 focus:border-grayscale-500 active:border-grayscale-500 h-[56px] w-full rounded-md border px-4 text-gray-900 outline-none group-data-[invalid=true]:border-red-700 peer-data-[label-floating=true]:pt-3",
+            "border-grayscale-200 hover:border-grayscale-500 focus:border-grayscale-500 active:border-grayscale-500 h-[56px] w-full rounded-lg border-2 px-4 text-gray-900 outline-none group-data-[invalid=true]:border-red-700 peer-data-[label-floating=true]:pt-3",
             size === "sm" && "text-2xs m-0 h-12",
             inputClassName,
           )}

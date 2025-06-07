@@ -3,6 +3,7 @@
 // Components
 import { Layout, LayoutRow, LayoutColumn } from "@/components/Layout";
 import { Input } from "@/components/Input";
+import { Button } from "@/components/Button";
 
 // External packages
 import * as React from "react";
@@ -38,8 +39,8 @@ export default function Login() {
   return (
     <Layout>
       <LayoutRow>
-        <LayoutColumn>
-          <div className="mx-auto mt-32 mb-10 sm:w-1/2">
+        <LayoutColumn smSpan={6} smOffset={3}>
+          <div className="mt-32 mb-10">
             <Image
               src={Logo}
               alt="logo"
@@ -56,10 +57,10 @@ export default function Login() {
               value={email}
               inputProps={{
                 onChange: (e) => setEmail(e.target.value),
-                validationError: "Email",
+                validationError: "Please enter a valid email address.",
               }}
               autoComplete="username"
-              className="mb-8 w-full"
+              className="mb-10 w-full"
               isRequired
             />
             <Input
@@ -67,16 +68,30 @@ export default function Login() {
               type="password"
               inputProps={{
                 onChange: (e) => setPassword(e.target.value),
-                validationError: "Password",
+                validationError: "Please enter a valid password.",
               }}
               value={password}
               autoComplete="current-password"
-              className="mb-8 w-full"
+              className="mb-10 w-full"
               isRequired
             />
-            <button type="submit">Prijavi se</button>
+            <Button
+              className="h-14 w-full bg-amber-400 hover:bg-amber-500"
+              type="submit"
+            >
+              Login
+            </Button>
           </form>
           {error && <p>Error</p>}
+
+          <Button size="md">Lorem ipsum</Button>
+          <Button size="sm">Lorem ipsum</Button>
+          <Button size="md" variant="outline">
+            Lorem ipsum
+          </Button>
+          <Button size="sm" variant="outline">
+            Lorem ipsum
+          </Button>
         </LayoutColumn>
       </LayoutRow>
     </Layout>
