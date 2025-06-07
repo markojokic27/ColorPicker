@@ -8,7 +8,12 @@ export function middleware(request: NextRequest) {
   if (!token && request.nextUrl.pathname !== "/login") {
     return NextResponse.redirect(new URL("/login", request.url));
   }
-  return NextResponse.next();
+  const response = NextResponse.next();
+  response.headers.set(
+    "Cache-Control",
+    "no-store, no-cache, must-revalidate, proxy-revalidate",
+  );
+  return response;
 }
 export const config = {
   matcher: [

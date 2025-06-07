@@ -41,12 +41,19 @@ type LayoutColumnProps = React.ComponentPropsWithoutRef<"div"> & {
   xlOffset?: number;
 };
 
-const spanClasses = (span: number, prefix: string = "") => {
-  return prefix ? `${prefix}:w-column-${span}` : `w-column-${span}`;
-};
-
-const offsetClasses = (offset: number, prefix: string = "") => {
-  return prefix ? `${prefix}:offset-${offset}` : `offset-${offset}`;
+const classesMaker = (
+  span: number | undefined,
+  offset: number | undefined,
+  prefix: string = "",
+): string => {
+  if (span === undefined && offset === undefined) return "";
+  const spanClasses = prefix
+    ? `${prefix}:w-column-${span}`
+    : `w-column-${span}`;
+  const offsetClasses = prefix
+    ? `${prefix}:offset-${offset}`
+    : `offset-${offset}`;
+  return `${spanClasses} ${offsetClasses}`;
 };
 
 export const LayoutColumn: React.FC<LayoutColumnProps> = ({
@@ -64,23 +71,11 @@ export const LayoutColumn: React.FC<LayoutColumnProps> = ({
   className,
   ...rest
 }) => {
-  const baseClasses = `${spanClasses(span)} ${offsetClasses(offset)}`;
-  const smClasses =
-    smSpan || smOffset
-      ? `${smSpan ? spanClasses(smSpan, "sm") : ""} ${smOffset ? offsetClasses(smOffset, "sm") : ""}`
-      : "";
-  const mdClasses =
-    mdSpan || mdOffset
-      ? `${mdSpan ? spanClasses(mdSpan, "md") : ""} ${mdOffset ? offsetClasses(mdOffset, "md") : ""}`
-      : "";
-  const lgClasses =
-    lgSpan || lgOffset
-      ? `${lgSpan ? spanClasses(lgSpan, "lg") : ""} ${lgOffset ? offsetClasses(lgOffset, "lg") : ""}`
-      : "";
-  const xlClasses =
-    xlSpan || xlOffset
-      ? `${xlSpan ? spanClasses(xlSpan, "xl") : ""} ${xlOffset ? offsetClasses(xlOffset, "xl") : ""}`
-      : "";
+  const baseClasses = classesMaker(span, offset);
+  const smClasses = classesMaker(smSpan, smOffset, "sm");
+  const mdClasses = classesMaker(mdSpan, mdOffset, "md");
+  const lgClasses = classesMaker(lgSpan, lgOffset, "lg");
+  const xlClasses = classesMaker(xlSpan, xlOffset, "xl");
   return (
     <div
       {...rest}

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* @source inline('{.sm:,.md:,.lg:,.xl:}w-column-{1..12}');
-@source inline("{sm:,md:,lg:,xl:}offset-{1..11}"); */
+@source inline("{sm:,md:,lg:,xl:}offset-{0..11}");  */
 
 @layer utilities {
   .w-column-1 {

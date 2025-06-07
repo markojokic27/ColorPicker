@@ -8,8 +8,8 @@ export default function LogoutButton() {
 
   const handleLogout = async () => {
     await fetch("/api/logout", { method: "POST" });
-    router.push("/login");
+    router.replace("/login");
+    window.location.reload();
   };
-
-  return <button onClick={handleLogout}>Odjavi se</button>;
+  return <button onClick={handleLogout}>Logout</button>;
 }

@@ -38,9 +38,9 @@ export default function Login() {
 
   return (
     <Layout>
-      <LayoutRow>
-        <LayoutColumn smSpan={6} smOffset={3}>
-          <div className="mt-32 mb-10">
+      <LayoutRow className="lg:min-h-screen lg:items-center">
+        <LayoutColumn smSpan={6} smOffset={3} lgSpan={6} lgOffset={0}>
+          <div className="mt-32 mb-10 w-full lg:my-0">
             <Image
               src={Logo}
               alt="logo"
@@ -49,7 +49,7 @@ export default function Login() {
             />
           </div>
         </LayoutColumn>
-        <LayoutColumn smSpan={6} smOffset={3}>
+        <LayoutColumn smSpan={6} smOffset={3} lgSpan={6} lgOffset={0}>
           <form onSubmit={handleSubmit} className="w-full">
             <Input
               label="Email"
@@ -75,23 +75,15 @@ export default function Login() {
               className="mb-10 w-full"
               isRequired
             />
-            <Button
-              className="h-14 w-full bg-amber-400 hover:bg-amber-500"
-              type="submit"
-            >
+            <Button className="h-14 w-full" type="submit">
               Login
             </Button>
+            {error && (
+              <p className="absolute mx-auto mt-2 text-red-500">
+                Incorrect email or password.
+              </p>
+            )}
           </form>
-          {error && <p>Error</p>}
-
-          <Button size="md">Lorem ipsum</Button>
-          <Button size="sm">Lorem ipsum</Button>
-          <Button size="md" variant="outline">
-            Lorem ipsum
-          </Button>
-          <Button size="sm" variant="outline">
-            Lorem ipsum
-          </Button>
         </LayoutColumn>
       </LayoutRow>
     </Layout>
