@@ -1,16 +1,18 @@
 // Components
 import { Layout, LayoutRow, LayoutColumn } from "@/components/Layout";
-import LogoutButton from "@/components/LogoutButton";
+import { Header } from "@/components/Header";
 
 export default function Home() {
   return (
-    <Layout>
-      <LayoutRow>
-        <LayoutColumn>
-          <LogoutButton />
-          <div>ColorPicker</div>
-        </LayoutColumn>
-      </LayoutRow>
-    </Layout>
+    <>
+      <Header />
+      <Layout className="mt-20 lg:mt-24">
+        <LayoutRow>
+          <LayoutColumn>
+            <div>ColorPicker</div>
+          </LayoutColumn>
+        </LayoutRow>
+      </Layout>
+    </>
   );
 }

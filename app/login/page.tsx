@@ -79,7 +79,7 @@ export default function Login() {
               Login
             </Button>
             {error && (
-              <p className="absolute mx-auto mt-2 text-red-500">
+              <p className="absolute mx-auto mt-2 text-orange-400">
                 Incorrect email or password.
               </p>
             )}
