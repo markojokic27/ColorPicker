@@ -37,7 +37,7 @@ export default function RandomColors({ token }: { token: string | null }) {
       );
       setRandomColors(res.data.data);
     } catch (err) {
-      setError("Failed to fetch colors");
+      setError("Failed to fetch colors:" + err);
     } finally {
       setLoading(false);
     }
