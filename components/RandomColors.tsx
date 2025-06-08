@@ -14,6 +14,7 @@ export default function RandomColors({ token }: { token: string | null }) {
   const [randomColors, setRandomColors] = React.useState<string[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [limit, setLimit] = React.useState(10);
 
   const { addColor } = useColorContext();
 
@@ -26,7 +27,7 @@ export default function RandomColors({ token }: { token: string | null }) {
     setError(null);
     try {
       const res = await axios.get(
-        "https://bootcamp2025.depster.me/api/colors?limit=10",
+        `https://bootcamp2025.depster.me/api/colors?limit=${limit}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -49,14 +50,26 @@ export default function RandomColors({ token }: { token: string | null }) {
         Random colors
       </h1>
 
-      <Button
-        size="sm"
-        onPress={fetchColors}
-        disabled={loading}
-        className="my-8 w-37 disabled:border-gray-300 disabled:bg-gray-300 disabled:hover:cursor-auto"
-      >
-        {loading ? "Loading" : "Get new colors"}
-      </Button>
+      <div className="my-8 flex w-full justify-center gap-2 sm:gap-4">
+        <input
+          type="number"
+          min={1}
+          max={10}
+          value={limit}
+          onChange={(e) =>
+            setLimit(Math.max(1, Math.min(10, Number(e.target.value))))
+          }
+          className="active:orange-400 w-24 rounded-md border border-orange-400 px-2 py-1 text-center text-sm shadow-sm focus:border-orange-400 focus:outline-none"
+        />
+        <Button
+          size="sm"
+          onPress={fetchColors}
+          disabled={loading}
+          className="w-37 disabled:border-gray-300 disabled:bg-gray-300 disabled:hover:cursor-auto"
+        >
+          {loading ? "Loading" : "Get new colors"}
+        </Button>
+      </div>
 
       {error && (
         <div className="mt-2 mb-4 font-semibold text-red-600">{error}</div>
