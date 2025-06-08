@@ -3,6 +3,7 @@
 // Components
 import { Button } from "@/components/Button";
 import { TrashIcon } from "@/components/icons/TrashIcon";
+import { LeftArrow } from "@/components/icons/LeftArrow";
 
 // Context
 import { useColorContext } from "@/context/ColorContext";
@@ -12,7 +13,7 @@ import * as React from "react";
 import { twMerge } from "tailwind-merge";
 
 export default function MyPalette() {
-  const { colors, removeColor, isInitialized } = useColorContext();
+  const { colors, removeColor, isInitialized, moveColor } = useColorContext();
   const [edit, setEdit] = React.useState(false);
 
   return (
@@ -49,12 +50,32 @@ export default function MyPalette() {
               <Button
                 size="sm"
                 className={twMerge(
-                  "absolute top-1 right-1 hidden h-6 w-6 items-center justify-center rounded-sm border-red-500 bg-red-500 p-0 font-normal hover:border-red-400 hover:bg-red-400",
+                  "absolute top-1 right-1 hidden h-6 w-6 items-center justify-center rounded-sm border-red-500 bg-red-500 p-0 hover:border-red-400 hover:bg-red-400",
                   edit ? "flex" : "",
                 )}
                 onPress={() => removeColor(color)}
               >
                 <TrashIcon />
+              </Button>
+              <Button
+                size="sm"
+                className={twMerge(
+                  "absolute bottom-1 left-1 hidden h-6 w-6 items-center justify-center rounded-sm p-0 font-normal",
+                  edit ? "flex" : "",
+                )}
+                onPress={() => moveColor(key, "left")}
+              >
+                <LeftArrow />
+              </Button>
+              <Button
+                size="sm"
+                className={twMerge(
+                  "absolute right-1 bottom-1 hidden h-6 w-6 items-center justify-center rounded-sm p-0 font-normal",
+                  edit ? "flex" : "",
+                )}
+                onPress={() => moveColor(key, "right")}
+              >
+                <LeftArrow className="-scale-x-100" />
               </Button>
             </div>
           ))}

@@ -7,6 +7,7 @@ type ColorContextType = {
   colors: string[];
   addColor: (color: string) => void;
   removeColor: (color: string) => void;
+  moveColor: (index: number, direction: "left" | "right") => void;
   isInitialized: boolean;
 };
 
@@ -41,9 +42,25 @@ export const ColorProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
+  const moveColor = (index: number, direction: "left" | "right") => {
+    setColors((prev) => {
+      const newColors = [...prev];
+      const targetIndex = direction === "left" ? index - 1 : index + 1;
+
+      if (targetIndex < 0 || targetIndex >= newColors.length) return prev;
+
+      [newColors[index], newColors[targetIndex]] = [
+        newColors[targetIndex],
+        newColors[index],
+      ];
+      localStorage.setItem("savedColors", JSON.stringify(newColors));
+      return newColors;
+    });
+  };
+
   return (
     <ColorContext.Provider
-      value={{ colors, addColor, removeColor, isInitialized }}
+      value={{ colors, addColor, removeColor, moveColor, isInitialized }}
     >
       {children}
     </ColorContext.Provider>
