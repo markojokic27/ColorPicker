@@ -2,12 +2,14 @@
 
 // Components
 import { Button } from "@/components/Button";
+import { TrashIcon } from "@/components/icons/TrashIcon";
 
 // Context
 import { useColorContext } from "@/context/ColorContext";
 
 // External packages
 import * as React from "react";
+import { twMerge } from "tailwind-merge";
 
 export default function MyPalette() {
   const { colors, removeColor, isInitialized } = useColorContext();
@@ -21,7 +23,11 @@ export default function MyPalette() {
       <Button
         size="sm"
         onPress={setEdit.bind(null, !edit)}
-        className="my-8 w-37 disabled:border-gray-300 disabled:bg-gray-300 disabled:hover:cursor-auto"
+        className={twMerge(
+          "my-8 w-37 disabled:border-gray-300 disabled:bg-gray-300 disabled:hover:cursor-auto",
+          edit &&
+            "border-red-500 bg-red-500 hover:border-red-400 hover:bg-red-400",
+        )}
       >
         {edit ? "Finish" : "Edit colors"}
       </Button>
@@ -35,17 +41,20 @@ export default function MyPalette() {
             <div
               key={key}
               style={{ backgroundColor: color }}
-              className="group relative flex h-24 w-24 items-center justify-center rounded-lg shadow"
+              className="relative flex h-24 w-24 items-center justify-center rounded-lg shadow"
             >
               <span className="font-semibold text-white drop-shadow-2xl">
                 {color}
               </span>
               <Button
                 size="sm"
-                className="absolute bottom-1 w-[88px] rounded-sm py-1 font-normal opacity-0 transition-opacity group-hover:opacity-100"
+                className={twMerge(
+                  "absolute top-1 right-1 hidden h-6 w-6 items-center justify-center rounded-sm border-red-500 bg-red-500 p-0 font-normal hover:border-red-400 hover:bg-red-400",
+                  edit ? "flex" : "",
+                )}
                 onPress={() => removeColor(color)}
               >
-                Delete
+                <TrashIcon />
               </Button>
             </div>
           ))}
