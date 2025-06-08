@@ -31,7 +31,7 @@ export const Button: React.FC<
     isDisabled={rest.disabled}
     className={twMerge(
       `${iconLeft || iconRight ? "flex items-center gap-2" : ""}`,
-      "rounded-lg border border-black bg-transparent leading-none font-semibold transition-colors duration-300 outline-none hover:cursor-pointer hover:border-gray-500 hover:bg-transparent focus:outline-none active:scale-[0.98]",
+      "rounded-lg border border-black bg-transparent leading-none font-semibold transition-colors duration-300 outline-none hover:cursor-pointer hover:border-gray-500 hover:bg-transparent focus:outline-none active:scale-[0.98] disabled:active:scale-100",
       variant === "solid" &&
         "border-orange-400 bg-orange-400 text-white hover:border-orange-300 hover:bg-orange-300",
       variant === "outline" && "hover:border-gray-500 hover:text-gray-500",
