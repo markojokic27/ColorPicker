@@ -22,7 +22,7 @@ export default async function HomePage() {
   return (
     <>
       <Header />
-      <Layout className="mt-30 lg:mt-34">
+      <Layout className="mt-30 mb-4 lg:mt-34">
         <LayoutRow>
           <ColorProvider>
             <LayoutColumn lgSpan={6}>
