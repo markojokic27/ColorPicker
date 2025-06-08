@@ -15,8 +15,11 @@ export default function RandomColors({ token }: { token: string | null }) {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [limit, setLimit] = React.useState(10);
+  const [alreadyExistsError, setAlreadyExistsError] = React.useState<
+    string | null
+  >(null);
 
-  const { addColor } = useColorContext();
+  const { addColor, colors } = useColorContext();
 
   const fetchColors = async () => {
     if (!token) {
@@ -40,6 +43,17 @@ export default function RandomColors({ token }: { token: string | null }) {
     }
   };
 
+  const handleAddColor = (color: string) => {
+    if (colors.includes(color)) {
+      setAlreadyExistsError(`Color ${color} already exists in your palette.`);
+      setTimeout(() => {
+        setAlreadyExistsError(null);
+      }, 3000);
+      return;
+    }
+    addColor(color);
+  };
+
   React.useEffect(() => {
     fetchColors();
   }, []);
@@ -50,7 +64,7 @@ export default function RandomColors({ token }: { token: string | null }) {
         Random colors
       </h1>
 
-      <div className="my-8 flex w-full justify-center gap-2 sm:gap-4">
+      <div className="relative my-10 flex w-full justify-center gap-2 sm:gap-4">
         <input
           type="number"
           min={1}
@@ -69,6 +83,11 @@ export default function RandomColors({ token }: { token: string | null }) {
         >
           {loading ? "Loading" : "Get new colors"}
         </Button>
+        {alreadyExistsError && (
+          <div className="absolute bottom-[-36px] text-center text-xs text-orange-400 sm:text-sm lg:bottom-[-30px] lg:text-base">
+            {alreadyExistsError}
+          </div>
+        )}
       </div>
 
       {error && (
@@ -88,7 +107,7 @@ export default function RandomColors({ token }: { token: string | null }) {
             <Button
               size="sm"
               className="absolute bottom-1 w-[88px] rounded-sm py-1 font-normal opacity-0 transition-opacity group-hover:opacity-100"
-              onPress={() => addColor(color)}
+              onPress={() => handleAddColor(color)}
             >
               Save
             </Button>

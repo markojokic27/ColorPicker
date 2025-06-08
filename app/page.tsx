@@ -1,6 +1,8 @@
 // Components
 import { Header } from "@/components/Header";
 import { Layout, LayoutRow, LayoutColumn } from "@/components/Layout";
+import MyPalette from "@/components/MyPallete";
+import RandomColors from "@/components/RandomColors";
 
 // Context
 import { ColorProvider } from "@/context/ColorContext";
@@ -8,8 +10,6 @@ import { ColorProvider } from "@/context/ColorContext";
 // External packages
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import RandomColors from "@/components/RandomColors";
-import MyPalette from "@/components/MyPallete";
 
 export default async function HomePage() {
   const cookieStore = await cookies();
@@ -25,10 +25,10 @@ export default async function HomePage() {
       <Layout className="mt-30 lg:mt-34">
         <LayoutRow>
           <ColorProvider>
-            <LayoutColumn mdSpan={6}>
+            <LayoutColumn lgSpan={6}>
               <RandomColors token={token} />
             </LayoutColumn>
-            <LayoutColumn mdSpan={6}>
+            <LayoutColumn lgSpan={6}>
               <MyPalette />
             </LayoutColumn>
           </ColorProvider>

@@ -25,7 +25,7 @@ export default function MyPalette() {
         size="sm"
         onPress={setEdit.bind(null, !edit)}
         className={twMerge(
-          "my-8 w-37 disabled:border-gray-300 disabled:bg-gray-300 disabled:hover:cursor-auto",
+          "my-10 w-37 disabled:border-gray-300 disabled:bg-gray-300 disabled:hover:cursor-auto",
           edit &&
             "border-red-500 bg-red-500 hover:border-red-400 hover:bg-red-400",
         )}
