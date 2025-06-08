@@ -7,6 +7,7 @@ type ColorContextType = {
   colors: string[];
   addColor: (color: string) => void;
   removeColor: (color: string) => void;
+  isInitialized: boolean;
 };
 
 const ColorContext = React.createContext<ColorContextType | undefined>(
@@ -15,10 +16,12 @@ const ColorContext = React.createContext<ColorContextType | undefined>(
 
 export const ColorProvider = ({ children }: { children: React.ReactNode }) => {
   const [colors, setColors] = React.useState<string[]>([]);
+  const [isInitialized, setIsInitialized] = React.useState(false);
 
   React.useEffect(() => {
     const stored = localStorage.getItem("savedColors");
     setColors(stored ? JSON.parse(stored) : []);
+    setIsInitialized(true);
   }, []);
 
   const addColor = (newColor: string) => {
@@ -39,7 +42,9 @@ export const ColorProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <ColorContext.Provider value={{ colors, addColor, removeColor }}>
+    <ColorContext.Provider
+      value={{ colors, addColor, removeColor, isInitialized }}
+    >
       {children}
     </ColorContext.Provider>
   );

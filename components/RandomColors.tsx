@@ -39,15 +39,21 @@ export default function RandomColors({ token }: { token: string | null }) {
     }
   };
 
+  React.useEffect(() => {
+    fetchColors();
+  }, []);
+
   return (
     <div className="mb-4 flex flex-col items-center rounded-2xl bg-white p-4 md:p-10">
-      <h1 className="text-center text-3xl font-bold">Random colors</h1>
+      <h1 className="mt-4 text-center text-3xl font-bold md:mt-0">
+        Random colors
+      </h1>
 
       <Button
         size="sm"
         onPress={fetchColors}
         disabled={loading}
-        className="my-6 w-37 disabled:border-gray-300 disabled:bg-gray-300 disabled:hover:cursor-auto"
+        className="my-8 w-37 disabled:border-gray-300 disabled:bg-gray-300 disabled:hover:cursor-auto"
       >
         {loading ? "Loading" : "Get new colors"}
       </Button>

@@ -10,16 +10,27 @@ import { useColorContext } from "@/context/ColorContext";
 import * as React from "react";
 
 export default function MyPalette() {
-  const { colors, removeColor } = useColorContext();
+  const { colors, removeColor, isInitialized } = useColorContext();
+  const [edit, setEdit] = React.useState(false);
 
   return (
     <div className="flex flex-col items-center rounded-2xl bg-white p-4 md:p-10">
-      <h1 className="text-center text-3xl font-bold">My Palette</h1>
-
-      {colors.length === 0 ? (
+      <h1 className="mt-4 text-center text-3xl font-bold md:mt-0">
+        My Palette
+      </h1>
+      <Button
+        size="sm"
+        onPress={setEdit.bind(null, !edit)}
+        className="my-8 w-37 disabled:border-gray-300 disabled:bg-gray-300 disabled:hover:cursor-auto"
+      >
+        {edit ? "Finish" : "Edit colors"}
+      </Button>
+      {!isInitialized ? (
+        <p className="mt-6 text-gray-400 italic">Loading saved colors...</p>
+      ) : colors.length === 0 ? (
         <p className="mt-6 text-gray-500">No saved colors yet.</p>
       ) : (
-        <div className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-4">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
           {colors.map((color, key) => (
             <div
               key={key}
